@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 struct WeatherData {
+    var city: String?
+    var country: String?
+    
     var temp: Double? // [°C]
     var maxTemp: Double? // [°C]
     var minTemp: Double? // [°C]
@@ -21,6 +24,6 @@ struct WeatherData {
     var humidity: Int? // [%]
     var windSpeed: Double? // [m/s]
     
-    var sunrise: Int? // [s] - Unix Time
-    var sunset: Int? // [s] - Unix Time
+    var sunrise: Double? // [s] - Unix Time
+    var sunset: Double? // [s] - Unix Time
 }

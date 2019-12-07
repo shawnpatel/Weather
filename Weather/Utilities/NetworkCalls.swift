@@ -26,11 +26,21 @@ class NetworkCalls {
             
             let data = JSON(response.data!)
             
+            weatherData.city = data["name"].stringValue
+            weatherData.country = data["sys"]["country"].stringValue
+            
             weatherData.temp = data["main"]["temp"].doubleValue
             weatherData.minTemp = data["main"]["temp_min"].doubleValue
             weatherData.maxTemp = data["main"]["temp_max"].doubleValue
             
-            weatherData.description = data["weather"][0]["description"].stringValue.uppercased()
+            weatherData.description = data["weather"][0]["description"].stringValue.localizedCapitalized
+            
+            weatherData.pressure = data["main"]["pressure"].doubleValue
+            weatherData.humidity = data["main"]["humidity"].intValue
+            weatherData.windSpeed = data["wind"]["speed"].doubleValue
+            
+            weatherData.sunrise = data["sys"]["sunrise"].doubleValue
+            weatherData.sunset = data["sys"]["sunset"].doubleValue
             
             let icon = data["weather"][0]["icon"].stringValue
             self.getWeatherImage(icon: icon) {response in
@@ -39,17 +49,9 @@ class NetworkCalls {
                     completion(.failure(NSError(domain: error.localizedDescription, code: 0)))
                 case .success(let weatherIcon):
                     weatherData.icon = weatherIcon
+                    completion(.success(weatherData))
                 }
             }
-            
-            weatherData.pressure = data["main"]["pressure"].doubleValue
-            weatherData.humidity = data["main"]["humidity"].intValue
-            weatherData.windSpeed = data["wind"]["speed"].doubleValue
-            
-            weatherData.sunrise = data["sys"]["sunrise"].intValue
-            weatherData.sunset = data["sys"]["sunset"].intValue
-            
-            completion(.success(weatherData))
         }
     }
     
