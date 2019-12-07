@@ -12,11 +12,11 @@ import Alamofire
 import SwiftyJSON
 
 class NetworkCalls {
-    func getWeather(lat: Double, long: Double, completion: @escaping (Result<WeatherData, NSError>) -> Void) {
+    func getWeather(lat: Double, long: Double, units: String, completion: @escaping (Result<WeatherData, NSError>) -> Void) {
         var weatherData = WeatherData()
         
         let weatherAPIKey = "2152f0ae29eeeb61115e5d7740e1229d"
-        let weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=\(weatherAPIKey)&lat=\(lat)&lon=\(long)&units=metric"
+        let weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=\(weatherAPIKey)&lat=\(lat)&lon=\(long)&units=\(units)"
         
         AF.request(weatherURL).response { response in
             if let error = response.error {

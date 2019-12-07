@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 
 class HomeTableViewController: UITableViewController {
     
@@ -14,11 +15,31 @@ class HomeTableViewController: UITableViewController {
     var currentLocation: CLLocation!
     
     var weatherData: WeatherData!
+    var settings: [String: Any] = [:]
+    
+    var unitSymbols: [String: [String]] = ["temp": ["°F", "°C"], "speed": ["mph", "m/s"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadSettings()
         getCurrentWeather()
+    }
+    
+    func loadSettings() {
+        // Fetch Data
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Settings")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                settings["units"] = data.value(forKey: "units") as! Int
+            }
+        } catch {
+            print("Fetching from Core Data failed.")
+        }
     }
     
     func getCurrentWeather() {
@@ -29,12 +50,20 @@ class HomeTableViewController: UITableViewController {
             
             let lat = currentLocation.coordinate.latitude
             let long = currentLocation.coordinate.longitude
-            getWeatherData(lat: lat, long: long)
+            
+            var units: String
+            if settings["units"] as! Int == 0 {
+                units = "imperial"
+            } else {
+                units = "metric"
+            }
+            
+            getWeatherData(lat: lat, long: long, units: units)
         }
     }
     
-    func getWeatherData(lat: Double, long: Double) {
-        NetworkCalls().getWeather(lat: lat, long: long) {response in
+    func getWeatherData(lat: Double, long: Double, units: String) {
+        NetworkCalls().getWeather(lat: lat, long: long, units: units) {response in
             switch response {
             case .success(let weatherData):
                 self.weatherData = weatherData
@@ -46,6 +75,7 @@ class HomeTableViewController: UITableViewController {
     }
     
     @IBAction func currentLocationButton(_ sender: UIBarButtonItem) {
+        loadSettings()
         getCurrentWeather()
     }
     
@@ -76,9 +106,9 @@ class HomeTableViewController: UITableViewController {
                 cell.weatherDescription.text = weatherData.description
                 
                 cell.location.text = "\(weatherData.city!), \(weatherData.country!)"
-                cell.temp.text = "\(weatherData.temp!) °C"
-                cell.lowTemp.text = "L: \(weatherData.minTemp!) °C"
-                cell.highTemp.text = "H: \(weatherData.maxTemp!) °C"
+                cell.temp.text = "\(weatherData.temp!) \(unitSymbols["temp"]![settings["units"] as! Int])"
+                cell.lowTemp.text = "L: \(weatherData.minTemp!) \(unitSymbols["temp"]![settings["units"] as! Int])"
+                cell.highTemp.text = "H: \(weatherData.maxTemp!) \(unitSymbols["temp"]![settings["units"] as! Int])"
             }
             
             return cell
@@ -86,9 +116,9 @@ class HomeTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "supplementConditions", for: indexPath) as! SupplementConditionsTableViewCell
             
             if weatherData != nil {
-                cell.pressure.text = "\(weatherData.pressure!) Pa"
+                cell.pressure.text = "\(weatherData.pressure!) hPa"
                 cell.humidity.text = "\(weatherData.humidity!) %"
-                cell.wind.text = "\(weatherData.windSpeed!) m/s"
+                cell.wind.text = "\(weatherData.windSpeed!) \(unitSymbols["speed"]![settings["units"] as! Int])"
             }
             
             return cell

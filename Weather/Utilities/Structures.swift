@@ -20,7 +20,7 @@ struct WeatherData {
     var description: String?
     var icon: UIImage?
     
-    var pressure: Double? // [Pa]
+    var pressure: Double? // [hPa]
     var humidity: Int? // [%]
     var windSpeed: Double? // [m/s]
     
