@@ -255,7 +255,11 @@
                                 <action selector="currentLocationButton:" destination="Cj2-2Q-ziT" id="2YO-zx-f1e"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="1pd-My-YM9"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="1pd-My-YM9">
+                            <connections>
+                                <action selector="searchButton:" destination="Cj2-2Q-ziT" id="nI9-ra-kt2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Jf-fj-QHz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

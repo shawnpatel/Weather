@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 import CoreData
+import GooglePlaces
 
 class HomeTableViewController: UITableViewController {
     
@@ -18,6 +19,12 @@ class HomeTableViewController: UITableViewController {
     var settings: [String: Any] = [:]
     
     var unitSymbols: [String: [String]] = ["temp": ["°F", "°C"], "speed": ["mph", "m/s"]]
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        loadSettings()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,18 +58,18 @@ class HomeTableViewController: UITableViewController {
             let lat = currentLocation.coordinate.latitude
             let long = currentLocation.coordinate.longitude
             
-            var units: String
-            if settings["units"] as! Int == 0 {
-                units = "imperial"
-            } else {
-                units = "metric"
-            }
-            
-            getWeatherData(lat: lat, long: long, units: units)
+            getWeatherData(lat: lat, long: long)
         }
     }
     
-    func getWeatherData(lat: Double, long: Double, units: String) {
+    func getWeatherData(lat: Double, long: Double) {
+        var units: String
+        if settings["units"] as! Int == 0 {
+            units = "imperial"
+        } else {
+            units = "metric"
+        }
+        
         NetworkCalls().getWeather(lat: lat, long: long, units: units) {response in
             switch response {
             case .success(let weatherData):
@@ -75,8 +82,29 @@ class HomeTableViewController: UITableViewController {
     }
     
     @IBAction func currentLocationButton(_ sender: UIBarButtonItem) {
-        loadSettings()
         getCurrentWeather()
+    }
+    
+    @IBAction func searchButton(_ sender: UIBarButtonItem) {
+        googlePlaceSearch()
+    }
+    
+    func googlePlaceSearch() {
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+
+        // Specify the place data types to return.
+        /*let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
+        UInt(GMSPlaceField.placeID.rawValue))!
+        autocompleteController.placeFields = fields*/
+
+        // Specify a filter.
+        let filter = GMSAutocompleteFilter()
+        filter.type = .city
+        autocompleteController.autocompleteFilter = filter
+
+        // Display the autocomplete view controller.
+        present(autocompleteController, animated: true, completion: nil)
     }
     
     // MARK: - Table View Data Source
@@ -162,4 +190,26 @@ class SupplementConditionsTableViewCell: UITableViewCell {
 class SunTableViewCell: UITableViewCell {
     @IBOutlet weak var sunrise: UILabel!
     @IBOutlet weak var sunset: UILabel!
+}
+
+extension HomeTableViewController: GMSAutocompleteViewControllerDelegate {
+    // Handle the user's selection.
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        let lat = place.coordinate.latitude
+        let long = place.coordinate.longitude
+        
+        getWeatherData(lat: lat, long: long)
+        
+        dismiss(animated: true, completion: nil)
+    }
+
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
+
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
 }
