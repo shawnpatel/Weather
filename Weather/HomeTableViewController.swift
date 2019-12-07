@@ -52,7 +52,7 @@ class HomeTableViewController: UITableViewController {
     // MARK: - Table View Data Source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -60,14 +60,16 @@ class HomeTableViewController: UITableViewController {
             return 125
         } else if indexPath.row == 1 {
             return 100
+        } else if indexPath.row == 2 {
+            return 100
         }
         
         return 50
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 { // Current Weather Cell
-            let cell = tableView.dequeueReusableCell(withIdentifier: "currentWeather", for: indexPath) as! CurrentWeatherTableViewCell
+        if indexPath.row == 0 { // Conditions Cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "conditions", for: indexPath) as! ConditionsTableViewCell
             
             if weatherData != nil {
                 cell.weatherIcon.image = weatherData.icon
@@ -80,7 +82,17 @@ class HomeTableViewController: UITableViewController {
             }
             
             return cell
-        } else if indexPath.row == 1 { // Sun Cell
+        } else if indexPath.row == 1 { // Supplement Conditions Cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "supplementConditions", for: indexPath) as! SupplementConditionsTableViewCell
+            
+            if weatherData != nil {
+                cell.pressure.text = "\(weatherData.pressure!) Pa"
+                cell.humidity.text = "\(weatherData.humidity!) %"
+                cell.wind.text = "\(weatherData.windSpeed!) m/s"
+            }
+            
+            return cell
+        } else if indexPath.row == 2 { // Sun Cell
             let cell = tableView.dequeueReusableCell(withIdentifier: "sun", for: indexPath) as! SunTableViewCell
             
             if weatherData != nil {
@@ -101,7 +113,7 @@ class HomeTableViewController: UITableViewController {
     }
 }
 
-class CurrentWeatherTableViewCell: UITableViewCell {
+class ConditionsTableViewCell: UITableViewCell {
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var weatherDescription: UILabel!
     
@@ -109,6 +121,12 @@ class CurrentWeatherTableViewCell: UITableViewCell {
     @IBOutlet weak var temp: UILabel!
     @IBOutlet weak var lowTemp: UILabel!
     @IBOutlet weak var highTemp: UILabel!
+}
+
+class SupplementConditionsTableViewCell: UITableViewCell {
+    @IBOutlet weak var pressure: UILabel!
+    @IBOutlet weak var humidity: UILabel!
+    @IBOutlet weak var wind: UILabel!
 }
 
 class SunTableViewCell: UITableViewCell {

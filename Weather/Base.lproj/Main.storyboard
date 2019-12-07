@@ -15,7 +15,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="currentWeather" rowHeight="125" id="DP3-82-bXI" customClass="CurrentWeatherTableViewCell" customModule="Weather" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="conditions" rowHeight="125" id="DP3-82-bXI" customClass="ConditionsTableViewCell" customModule="Weather" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DP3-82-bXI" id="Oeb-j7-iYb">
@@ -102,8 +102,88 @@
                                     <outlet property="weatherIcon" destination="pOk-kO-rhl" id="Mkm-78-GfP"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sun" rowHeight="100" id="8kM-ca-Q84" customClass="SunTableViewCell" customModule="Weather" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="supplementConditions" rowHeight="100" id="o38-2a-Mpr" customClass="SupplementConditionsTableViewCell" customModule="Weather" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="153" width="414" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o38-2a-Mpr" id="oMt-dH-V24">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="e92-Re-nt8">
+                                            <rect key="frame" x="5" y="5" width="404" height="90"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6WK-g6-nvz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="134.5" height="90"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle.compress.vertical" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="958-4e-QEF">
+                                                            <rect key="frame" x="0.0" y="-2" width="134.5" height="65.5"/>
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pressure" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Qc-32-0l9">
+                                                            <rect key="frame" x="0.0" y="67.5" width="134.5" height="22.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="4Qc-32-0l9" firstAttribute="height" secondItem="6WK-g6-nvz" secondAttribute="height" multiplier="0.25" id="C8J-YH-KT6"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="MPB-Tc-dfY">
+                                                    <rect key="frame" x="134.5" y="0.0" width="135" height="90"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="KSq-RD-EwQ">
+                                                            <rect key="frame" x="0.0" y="2.5" width="135" height="57.5"/>
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVV-xs-LVg">
+                                                            <rect key="frame" x="0.0" y="67.5" width="135" height="22.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="sVV-xs-LVg" firstAttribute="height" secondItem="MPB-Tc-dfY" secondAttribute="height" multiplier="0.25" id="FDj-s0-Mzb"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="F8m-CW-zlU">
+                                                    <rect key="frame" x="269.5" y="0.0" width="134.5" height="90"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wind" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pc9-Tl-LbU">
+                                                            <rect key="frame" x="0.0" y="2" width="134.5" height="59.5"/>
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ut-Ph-z4x">
+                                                            <rect key="frame" x="0.0" y="67.5" width="134.5" height="22.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="7ut-Ph-z4x" firstAttribute="height" secondItem="F8m-CW-zlU" secondAttribute="height" multiplier="0.25" id="EXD-UZ-fyc"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="e92-Re-nt8" secondAttribute="bottom" constant="5" id="D1q-Aj-zjq"/>
+                                        <constraint firstItem="e92-Re-nt8" firstAttribute="top" secondItem="oMt-dH-V24" secondAttribute="top" constant="5" id="NDG-t7-yzC"/>
+                                        <constraint firstAttribute="trailing" secondItem="e92-Re-nt8" secondAttribute="trailing" constant="5" id="m2s-Gn-2LW"/>
+                                        <constraint firstItem="e92-Re-nt8" firstAttribute="leading" secondItem="oMt-dH-V24" secondAttribute="leading" constant="5" id="wxV-bF-xBj"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="humidity" destination="sVV-xs-LVg" id="g7c-VQ-PCI"/>
+                                    <outlet property="pressure" destination="4Qc-32-0l9" id="lwM-5V-hod"/>
+                                    <outlet property="wind" destination="7ut-Ph-z4x" id="LPH-25-nKL"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sun" rowHeight="100" id="8kM-ca-Q84" customClass="SunTableViewCell" customModule="Weather" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="253" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8kM-ca-Q84" id="WYi-Kh-IKA">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -272,7 +352,10 @@
         <image name="Current Location" width="24" height="24"/>
         <image name="Home" width="24" height="24"/>
         <image name="Settings" width="24" height="24"/>
+        <image name="cloud" catalog="system" width="64" height="42"/>
+        <image name="rectangle.compress.vertical" catalog="system" width="64" height="64"/>
         <image name="sunrise" catalog="system" width="64" height="48"/>
         <image name="sunset" catalog="system" width="64" height="48"/>
+        <image name="wind" catalog="system" width="64" height="50"/>
     </resources>
 </document>
