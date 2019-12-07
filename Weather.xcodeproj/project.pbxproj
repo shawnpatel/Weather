@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA37C500239B723000189CC1 /* Weather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA37C4FE239B723000189CC1 /* Weather.xcdatamodeld */; };
 		CA4E6E79239AD150004A301F /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E6E78239AD150004A301F /* HomeTableViewController.swift */; };
 		CA4E6E7B239AD173004A301F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E6E7A239AD173004A301F /* SettingsTableViewController.swift */; };
 		CA4E6E7D239AD19B004A301F /* NetworkCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E6E7C239AD19B004A301F /* NetworkCalls.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		2FC2254F89A6CA51317E763A /* Pods-Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.debug.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.debug.xcconfig"; sourceTree = "<group>"; };
 		C63807712C5E085DEDA28AFB /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
+		CA37C4FF239B723000189CC1 /* Weather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weather.xcdatamodel; sourceTree = "<group>"; };
 		CA4E6E78239AD150004A301F /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeTableViewController.swift; path = /Users/shawnpatel/Documents/Apps/Weather/Weather/HomeTableViewController.swift; sourceTree = "<absolute>"; };
 		CA4E6E7A239AD173004A301F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		CA4E6E7C239AD19B004A301F /* NetworkCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCalls.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				CAAC50ED238E4DEE0072BE88 /* SceneDelegate.swift */,
 				CA4E6E78239AD150004A301F /* HomeTableViewController.swift */,
 				CA4E6E7A239AD173004A301F /* SettingsTableViewController.swift */,
+				CA37C4FE239B723000189CC1 /* Weather.xcdatamodeld */,
 				CA4E6E80239AD209004A301F /* Utilities */,
 				CAAC50F3238E4DEE0072BE88 /* Main.storyboard */,
 				CAAC50F8238E4DF00072BE88 /* LaunchScreen.storyboard */,
@@ -225,6 +228,7 @@
 			files = (
 				CA4E6E7B239AD173004A301F /* SettingsTableViewController.swift in Sources */,
 				CA4E6E7F239AD201004A301F /* Structures.swift in Sources */,
+				CA37C500239B723000189CC1 /* Weather.xcdatamodeld in Sources */,
 				CA4E6E79239AD150004A301F /* HomeTableViewController.swift in Sources */,
 				CAAC50EC238E4DEE0072BE88 /* AppDelegate.swift in Sources */,
 				CAAC50EE238E4DEE0072BE88 /* SceneDelegate.swift in Sources */,
@@ -430,6 +434,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CA37C4FE239B723000189CC1 /* Weather.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CA37C4FF239B723000189CC1 /* Weather.xcdatamodel */,
+			);
+			currentVersion = CA37C4FF239B723000189CC1 /* Weather.xcdatamodel */;
+			path = Weather.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CAAC50E0238E4DEE0072BE88 /* Project object */;
 }

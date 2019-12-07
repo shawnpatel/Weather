@@ -322,18 +322,51 @@
         <scene sceneID="oZl-Yn-96T">
             <objects>
                 <tableViewController id="TjS-XT-gfk" customClass="SettingsTableViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="H9D-iE-bOe">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="H9D-iE-bOe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="generalSettings" id="PWq-ea-5U0">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segment" rowHeight="50" id="PWq-ea-5U0" customClass="SegmentTableViewCell" customModule="Weather" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PWq-ea-5U0" id="Si4-S9-iXa">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mEl-Hr-SYo">
+                                            <rect key="frame" x="5" y="5" width="404" height="40"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Segment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntj-xm-VvE">
+                                                    <rect key="frame" x="0.0" y="0.0" width="202" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zX4-FP-uOF">
+                                                    <rect key="frame" x="202" y="0.0" width="202" height="41"/>
+                                                    <segments>
+                                                        <segment title="First"/>
+                                                        <segment title="Second"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ntj-xm-VvE" firstAttribute="width" secondItem="mEl-Hr-SYo" secondAttribute="width" multiplier="0.5" id="PUC-ZK-SmJ"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="mEl-Hr-SYo" secondAttribute="trailing" constant="5" id="7tC-t9-u3w"/>
+                                        <constraint firstItem="mEl-Hr-SYo" firstAttribute="leading" secondItem="Si4-S9-iXa" secondAttribute="leading" constant="5" id="CiX-he-VoP"/>
+                                        <constraint firstAttribute="bottom" secondItem="mEl-Hr-SYo" secondAttribute="bottom" constant="5" id="In1-kV-mxm"/>
+                                        <constraint firstItem="mEl-Hr-SYo" firstAttribute="top" secondItem="Si4-S9-iXa" secondAttribute="top" constant="5" id="YTK-mx-poh"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="ntj-xm-VvE" id="FM3-Xm-ux4"/>
+                                    <outlet property="segment" destination="zX4-FP-uOF" id="Igd-Bk-IZo"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
