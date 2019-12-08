@@ -11,6 +11,7 @@ import CoreData
 
 class WeatherPreviewViewController: UIViewController {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var temp: UILabel!
     
@@ -18,12 +19,15 @@ class WeatherPreviewViewController: UIViewController {
     var long: Double!
     
     var weatherData: WeatherData!
-    var settings: [String: Any] = [:]
+    var settings: [String: Any] = ["units": 0]
     
     var unitSymbols: [String: [String]] = ["temp": ["°F", "°C"], "speed": ["mph", "m/s"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
         
         loadSettings()
         getWeatherData(lat: lat, long: long)
@@ -79,6 +83,8 @@ class WeatherPreviewViewController: UIViewController {
     
     func updateUI() {
         DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+            
             self.weatherIcon.image = self.weatherData.icon
             self.temp.text = "\(self.weatherData.temp!) \(self.unitSymbols["temp"]![self.settings["units"] as! Int])"
         }

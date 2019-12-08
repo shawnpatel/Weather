@@ -32,6 +32,8 @@ class HomeTableViewController: UITableViewController {
         
         locationManager.delegate = self
         
+        tableView.isHidden = true
+        
         loadSettings()
         loadSavedWeather()
         getSavedWeather()
@@ -151,6 +153,8 @@ class HomeTableViewController: UITableViewController {
             case .success(let weatherData):
                 self.weatherData = weatherData
                 self.tableView.reloadData()
+                
+                self.tableView.isHidden = false
                 
                 self.saveWeatherData()
             case .failure(let error):

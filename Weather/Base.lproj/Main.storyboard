@@ -438,13 +438,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Aw6-Db-E3I">
+                                <rect key="frame" x="90" y="65" width="20" height="20"/>
+                            </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QTA-gg-9ub">
                                 <rect key="frame" x="5" y="5" width="190" height="140"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PdS-5U-UYz">
                                         <rect key="frame" x="0.0" y="0.0" width="190" height="110"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0C-IH-zZD">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0C-IH-zZD">
                                         <rect key="frame" x="0.0" y="110" width="190" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="NNr-sO-bET"/>
@@ -458,15 +461,18 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Aw6-Db-E3I" firstAttribute="centerY" secondItem="xkW-1k-Wqh" secondAttribute="centerY" id="BN8-XE-d4s"/>
                             <constraint firstItem="g4f-4W-rfs" firstAttribute="trailing" secondItem="QTA-gg-9ub" secondAttribute="trailing" constant="5" id="LYY-eF-JfZ"/>
                             <constraint firstItem="QTA-gg-9ub" firstAttribute="leading" secondItem="g4f-4W-rfs" secondAttribute="leading" constant="5" id="M5P-Zo-q6Y"/>
                             <constraint firstItem="QTA-gg-9ub" firstAttribute="top" secondItem="xkW-1k-Wqh" secondAttribute="top" constant="5" id="N4s-Jl-umn"/>
                             <constraint firstItem="g4f-4W-rfs" firstAttribute="bottom" secondItem="QTA-gg-9ub" secondAttribute="bottom" constant="5" id="ZKp-hw-PyB"/>
+                            <constraint firstItem="Aw6-Db-E3I" firstAttribute="centerX" secondItem="xkW-1k-Wqh" secondAttribute="centerX" id="vQO-sy-DtU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g4f-4W-rfs"/>
                     </view>
                     <size key="freeformSize" width="200" height="150"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Aw6-Db-E3I" id="6k2-E0-QLz"/>
                         <outlet property="temp" destination="a0C-IH-zZD" id="XI2-pK-jrQ"/>
                         <outlet property="weatherIcon" destination="PdS-5U-UYz" id="Qvx-3o-m2n"/>
                     </connections>
