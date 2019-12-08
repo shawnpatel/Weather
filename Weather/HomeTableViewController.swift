@@ -24,6 +24,7 @@ class HomeTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         loadSettings()
+        getSavedWeather()
     }
 
     override func viewDidLoad() {
@@ -62,7 +63,40 @@ class HomeTableViewController: UITableViewController {
         }
     }
     
+    func getSavedWeather() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Map")
+        request.returnsObjectsAsFaults = false
+        
+        var lat: Double!
+        var long: Double!
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                lat = (data.value(forKey: "lat") as! Double)
+                long = (data.value(forKey: "long") as! Double)
+            }
+            
+            getWeatherData(lat: lat, long: long)
+        } catch {
+            print("Fetching from Core Data failed.")
+        }
+    }
+    
     func getWeatherData(lat: Double, long: Double) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Map", in: context)
+        let map = NSManagedObject(entity: entity!, insertInto: context)
+        
+        map.setValue(lat, forKey: "lat")
+        map.setValue(long, forKey: "long")
+        
+        do {
+            try context.save()
+        } catch {
+            print("Saving to Core Data failed.")
+        }
+        
         var units: String
         if settings["units"] as! Int == 0 {
             units = "imperial"

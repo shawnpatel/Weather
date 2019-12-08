@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -117,7 +118,7 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle.compress.vertical" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="958-4e-QEF">
                                                             <rect key="frame" x="0.0" y="-2" width="134.5" height="65.5"/>
-                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pressure" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Qc-32-0l9">
                                                             <rect key="frame" x="0.0" y="67.5" width="134.5" height="22.5"/>
@@ -135,7 +136,7 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="KSq-RD-EwQ">
                                                             <rect key="frame" x="0.0" y="2.5" width="135" height="57.5"/>
-                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVV-xs-LVg">
                                                             <rect key="frame" x="0.0" y="67.5" width="135" height="22.5"/>
@@ -153,7 +154,7 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wind" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pc9-Tl-LbU">
                                                             <rect key="frame" x="0.0" y="2" width="134.5" height="59.5"/>
-                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ut-Ph-z4x">
                                                             <rect key="frame" x="0.0" y="67.5" width="134.5" height="22.5"/>
@@ -197,7 +198,7 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunrise" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xHW-g0-ZL5">
                                                             <rect key="frame" x="0.0" y="-1.5" width="202" height="62"/>
-                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunrise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zm-1x-HgU">
                                                             <rect key="frame" x="0.0" y="67.5" width="202" height="22.5"/>
@@ -215,7 +216,7 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunset" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5ac-nL-GD6">
                                                             <rect key="frame" x="0.0" y="-1.5" width="202" height="62"/>
-                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunset" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dg-nY-pev">
                                                             <rect key="frame" x="0.0" y="67.5" width="202" height="22.5"/>
@@ -264,7 +265,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Jf-fj-QHz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1515.9420289855075" y="-320.08928571428572"/>
+            <point key="canvasLocation" x="1516" y="-719"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -277,6 +278,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Y0N-5b-X2z" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="o7z-1o-jWI" kind="relationship" relationship="viewControllers" id="0yg-qf-4Yz"/>
                         <segue destination="Sxr-HJ-ZNz" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                     </connections>
                 </tabBarController>
@@ -301,7 +303,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vh-Iu-Bv1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.27536231884062" y="-320.08928571428572"/>
+            <point key="canvasLocation" x="748" y="-719"/>
         </scene>
         <!--Settings-->
         <scene sceneID="qLS-lN-2GS">
@@ -320,7 +322,90 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVL-zZ-xLL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.27536231884062" y="359.59821428571428"/>
+            <point key="canvasLocation" x="748" y="715"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="zb2-zA-mRJ">
+            <objects>
+                <viewController id="dXn-ft-Pt4" customClass="MapViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="deJ-vB-knr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ez1-s5-DtS">
+                                <rect key="frame" x="5" y="93" width="404" height="715"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="grq-Wj-wLu" firstAttribute="trailing" secondItem="ez1-s5-DtS" secondAttribute="trailing" constant="5" id="2Dz-vh-bp2"/>
+                            <constraint firstItem="ez1-s5-DtS" firstAttribute="leading" secondItem="grq-Wj-wLu" secondAttribute="leading" constant="5" id="csV-7v-C73"/>
+                            <constraint firstItem="grq-Wj-wLu" firstAttribute="bottom" secondItem="ez1-s5-DtS" secondAttribute="bottom" constant="5" id="fAo-L1-TLh"/>
+                            <constraint firstItem="ez1-s5-DtS" firstAttribute="top" secondItem="grq-Wj-wLu" secondAttribute="top" constant="5" id="uf6-Jz-ZHo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="grq-Wj-wLu"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Map" id="yt5-H9-g3M">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="viewfinder" catalog="system" id="GRA-fg-Jrc">
+                            <connections>
+                                <segue destination="pNT-ya-QiC" kind="popoverPresentation" identifier="weatherPreview" popoverAnchorBarButtonItem="GRA-fg-Jrc" id="xBS-u2-gO1">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="ez1-s5-DtS" id="saR-DL-Wwv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DNh-1L-m3b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1516" y="0.0"/>
+        </scene>
+        <!--Weather Preview View Controller-->
+        <scene sceneID="Dn5-dI-Ez4">
+            <objects>
+                <viewController storyboardIdentifier="WeatherPreview" id="pNT-ya-QiC" customClass="WeatherPreviewViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xkW-1k-Wqh">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QTA-gg-9ub">
+                                <rect key="frame" x="5" y="5" width="190" height="140"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PdS-5U-UYz">
+                                        <rect key="frame" x="0.0" y="0.0" width="190" height="110"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0C-IH-zZD">
+                                        <rect key="frame" x="0.0" y="110" width="190" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="NNr-sO-bET"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="g4f-4W-rfs" firstAttribute="trailing" secondItem="QTA-gg-9ub" secondAttribute="trailing" constant="5" id="LYY-eF-JfZ"/>
+                            <constraint firstItem="QTA-gg-9ub" firstAttribute="leading" secondItem="g4f-4W-rfs" secondAttribute="leading" constant="5" id="M5P-Zo-q6Y"/>
+                            <constraint firstItem="QTA-gg-9ub" firstAttribute="top" secondItem="xkW-1k-Wqh" secondAttribute="top" constant="5" id="N4s-Jl-umn"/>
+                            <constraint firstItem="g4f-4W-rfs" firstAttribute="bottom" secondItem="QTA-gg-9ub" secondAttribute="bottom" constant="5" id="ZKp-hw-PyB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="g4f-4W-rfs"/>
+                    </view>
+                    <size key="freeformSize" width="200" height="150"/>
+                    <connections>
+                        <outlet property="temp" destination="a0C-IH-zZD" id="XI2-pK-jrQ"/>
+                        <outlet property="weatherIcon" destination="PdS-5U-UYz" id="Qvx-3o-m2n"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4ot-j5-8rN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2155" y="0.0"/>
         </scene>
         <!--Settings-->
         <scene sceneID="oZl-Yn-96T">
@@ -382,7 +467,26 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ixf-tV-e3Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1516" y="360"/>
+            <point key="canvasLocation" x="1516" y="715"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="EEa-Lw-iq4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="o7z-1o-jWI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="Current Location" id="R8F-PC-4tR"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rBE-J5-19L">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dXn-ft-Pt4" kind="relationship" relationship="rootViewController" id="N4u-Ni-Zqk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wJ7-46-dCO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="748" y="0.0"/>
         </scene>
     </scenes>
     <resources>
@@ -393,6 +497,7 @@
         <image name="rectangle.compress.vertical" catalog="system" width="64" height="64"/>
         <image name="sunrise" catalog="system" width="64" height="48"/>
         <image name="sunset" catalog="system" width="64" height="48"/>
+        <image name="viewfinder" catalog="system" width="64" height="56"/>
         <image name="wind" catalog="system" width="64" height="50"/>
     </resources>
 </document>
