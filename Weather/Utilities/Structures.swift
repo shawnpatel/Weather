@@ -14,10 +14,10 @@ struct WeatherData {
     var country: String?
     
     var temp: Double? // [°C]
-    var maxTemp: Double? // [°C]
     var minTemp: Double? // [°C]
+    var maxTemp: Double? // [°C]
     
-    var description: String?
+    var conditions: String?
     var icon: UIImage?
     
     var pressure: Double? // [hPa]
@@ -26,4 +26,29 @@ struct WeatherData {
     
     var sunrise: Double? // [s] - Unix Time
     var sunset: Double? // [s] - Unix Time
+    
+    var dictionary: [String: Any]? {
+        if city != nil {
+            return [
+                "city": city!,
+                "country": country!,
+                
+                "temp": temp!,
+                "minTemp": minTemp!,
+                "maxTemp": maxTemp!,
+                
+                "conditions": conditions!,
+                "icon": icon!.pngData()!,
+                
+                "pressure": pressure!,
+                "humidity": humidity!,
+                "windSpeed": windSpeed!,
+                
+                "sunrise": sunrise!,
+                "sunset": sunset!
+            ]
+        } else {
+            return nil
+        }
+    }
 }

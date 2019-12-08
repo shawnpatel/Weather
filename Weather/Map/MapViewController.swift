@@ -17,6 +17,12 @@ class MapViewController: UIViewController {
     var lat: Double!
     var long: Double!
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        getCoordinates()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,7 +35,7 @@ class MapViewController: UIViewController {
     
     func getCoordinates() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Map")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Location")
         request.returnsObjectsAsFaults = false
         
         do {
@@ -64,8 +70,8 @@ class MapViewController: UIViewController {
     }
     
     @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
-        let location = gestureReconizer.location(in: mapView)
-        let coordinate = mapView.convert(location,toCoordinateFrom: mapView)
+        let longPressLocation = gestureReconizer.location(in: mapView)
+        let coordinate = mapView.convert(longPressLocation, toCoordinateFrom: mapView)
 
         addAnnotation(lat: coordinate.latitude, long: coordinate.longitude)
         
@@ -73,11 +79,11 @@ class MapViewController: UIViewController {
         long = coordinate.longitude
         
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Map", in: context)
-        let map = NSManagedObject(entity: entity!, insertInto: context)
+        let entity = NSEntityDescription.entity(forEntityName: "Location", in: context)
+        let location = NSManagedObject(entity: entity!, insertInto: context)
         
-        map.setValue(coordinate.latitude, forKey: "lat")
-        map.setValue(coordinate.longitude, forKey: "long")
+        location.setValue(coordinate.latitude, forKey: "lat")
+        location.setValue(coordinate.longitude, forKey: "long")
         
         do {
             try context.save()

@@ -33,7 +33,7 @@ class NetworkCalls {
             weatherData.minTemp = data["main"]["temp_min"].doubleValue
             weatherData.maxTemp = data["main"]["temp_max"].doubleValue
             
-            weatherData.description = data["weather"][0]["description"].stringValue.localizedCapitalized
+            weatherData.conditions = data["weather"][0]["description"].stringValue.localizedCapitalized
             
             weatherData.pressure = data["main"]["pressure"].doubleValue
             weatherData.humidity = data["main"]["humidity"].intValue

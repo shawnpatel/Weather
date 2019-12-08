@@ -16,7 +16,7 @@ class HomeTableViewController: UITableViewController {
     var currentLocation: CLLocation!
     
     var weatherData: WeatherData!
-    var settings: [String: Any] = [:]
+    var settings: [String: Any] = ["units": 0]
     
     var unitSymbols: [String: [String]] = ["temp": ["°F", "°C"], "speed": ["mph", "m/s"]]
     
@@ -30,12 +30,50 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        locationManager.delegate = self
+        
         loadSettings()
-        getCurrentWeather()
+        loadSavedWeather()
+        getSavedWeather()
+    }
+    
+    func loadSavedWeather() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Weather")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                guard let city = data.value(forKey: "city") as? String else {
+                    return
+                }
+                
+                weatherData = WeatherData()
+                
+                weatherData.city = city
+                weatherData.country = (data.value(forKey: "country") as! String)
+                
+                weatherData.temp = (data.value(forKey: "temp") as! Double)
+                weatherData.minTemp = (data.value(forKey: "minTemp") as! Double)
+                weatherData.maxTemp = (data.value(forKey: "maxTemp") as! Double)
+                
+                weatherData.conditions = (data.value(forKey: "conditions") as! String)
+                weatherData.icon = UIImage(data: data.value(forKey: "icon") as! Data)
+                
+                weatherData.pressure = (data.value(forKey: "pressure") as! Double)
+                weatherData.humidity = (data.value(forKey: "humidity") as! Int)
+                weatherData.windSpeed = data.value(forKey: "windSpeed") as? Double
+                
+                weatherData.sunrise = (data.value(forKey: "sunrise") as! Double)
+                weatherData.sunset = (data.value(forKey: "sunset") as! Double)
+            }
+        } catch {
+            print("Fetching from Core Data failed.")
+        }
     }
     
     func loadSettings() {
-        // Fetch Data
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Settings")
         request.returnsObjectsAsFaults = false
@@ -65,7 +103,7 @@ class HomeTableViewController: UITableViewController {
     
     func getSavedWeather() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Map")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Location")
         request.returnsObjectsAsFaults = false
         
         var lat: Double!
@@ -77,7 +115,11 @@ class HomeTableViewController: UITableViewController {
                 long = (data.value(forKey: "long") as! Double)
             }
             
-            getWeatherData(lat: lat, long: long)
+            if lat == nil && long == nil {
+                getCurrentWeather()
+            } else {
+                getWeatherData(lat: lat, long: long)
+            }
         } catch {
             print("Fetching from Core Data failed.")
         }
@@ -85,11 +127,11 @@ class HomeTableViewController: UITableViewController {
     
     func getWeatherData(lat: Double, long: Double) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Map", in: context)
-        let map = NSManagedObject(entity: entity!, insertInto: context)
+        let entity = NSEntityDescription.entity(forEntityName: "Location", in: context)
+        let location = NSManagedObject(entity: entity!, insertInto: context)
         
-        map.setValue(lat, forKey: "lat")
-        map.setValue(long, forKey: "long")
+        location.setValue(lat, forKey: "lat")
+        location.setValue(long, forKey: "long")
         
         do {
             try context.save()
@@ -109,9 +151,25 @@ class HomeTableViewController: UITableViewController {
             case .success(let weatherData):
                 self.weatherData = weatherData
                 self.tableView.reloadData()
+                
+                self.saveWeatherData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    func saveWeatherData() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Weather", in: context)
+        let weather = NSManagedObject(entity: entity!, insertInto: context)
+        
+        weather.setValuesForKeys(weatherData.dictionary!)
+        
+        do {
+            try context.save()
+        } catch {
+            print("Saving to Core Data failed.")
         }
     }
     
@@ -165,7 +223,7 @@ class HomeTableViewController: UITableViewController {
             
             if weatherData != nil {
                 cell.weatherIcon.image = weatherData.icon
-                cell.weatherDescription.text = weatherData.description
+                cell.weatherDescription.text = weatherData.conditions
                 
                 cell.location.text = "\(weatherData.city!), \(weatherData.country!)"
                 cell.temp.text = "\(weatherData.temp!) \(unitSymbols["temp"]![settings["units"] as! Int])"
@@ -224,6 +282,14 @@ class SupplementConditionsTableViewCell: UITableViewCell {
 class SunTableViewCell: UITableViewCell {
     @IBOutlet weak var sunrise: UILabel!
     @IBOutlet weak var sunset: UILabel!
+}
+
+extension HomeTableViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            getCurrentWeather()
+        }
+    }
 }
 
 extension HomeTableViewController: GMSAutocompleteViewControllerDelegate {

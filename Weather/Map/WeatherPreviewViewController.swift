@@ -47,7 +47,7 @@ class WeatherPreviewViewController: UIViewController {
     
     func getWeatherData(lat: Double, long: Double) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Map", in: context)
+        let entity = NSEntityDescription.entity(forEntityName: "Location", in: context)
         let map = NSManagedObject(entity: entity!, insertInto: context)
         
         map.setValue(lat, forKey: "lat")

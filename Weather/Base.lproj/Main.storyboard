@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -279,6 +280,7 @@
                     <connections>
                         <segue destination="Y0N-5b-X2z" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="o7z-1o-jWI" kind="relationship" relationship="viewControllers" id="0yg-qf-4Yz"/>
+                        <segue destination="xEc-Sj-8Uz" kind="relationship" relationship="viewControllers" id="ume-6R-4Z9"/>
                         <segue destination="Sxr-HJ-ZNz" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                     </connections>
                 </tabBarController>
@@ -322,7 +324,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVL-zZ-xLL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="748" y="715"/>
+            <point key="canvasLocation" x="748" y="1419"/>
         </scene>
         <!--Map-->
         <scene sceneID="zb2-zA-mRJ">
@@ -361,6 +363,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DNh-1L-m3b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1516" y="0.0"/>
+        </scene>
+        <!--Forecast-->
+        <scene sceneID="Xa9-7h-kqw">
+            <objects>
+                <collectionViewController id="YMf-CA-R6J" customClass="ForecastCollectionViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="HUN-Qc-uks">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pEm-84-exB">
+                            <size key="itemSize" width="150" height="150"/>
+                            <size key="estimatedItemSize" width="110" height="110"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="forecastCell" id="iN8-al-cLf" customClass="ForecastCellCollectionViewCell" customModule="Weather" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="v5Y-8h-bkv">
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="X30-fb-vHj">
+                                            <rect key="frame" x="5" y="5" width="140" height="144.5"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FWz-xy-BTb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="119.5"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1GK-DN-ple">
+                                                    <rect key="frame" x="0.0" y="119.5" width="140" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="tkE-Tz-HK3"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="X30-fb-vHj" secondAttribute="trailing" constant="5" id="1hm-vs-VZ0"/>
+                                        <constraint firstItem="X30-fb-vHj" firstAttribute="leading" secondItem="v5Y-8h-bkv" secondAttribute="leading" constant="5" id="JmZ-5q-lk6"/>
+                                        <constraint firstItem="X30-fb-vHj" firstAttribute="top" secondItem="v5Y-8h-bkv" secondAttribute="top" constant="5" id="XBV-cZ-KQH"/>
+                                        <constraint firstAttribute="bottom" secondItem="X30-fb-vHj" secondAttribute="bottom" constant="0.5" id="iQe-v3-9L3"/>
+                                    </constraints>
+                                </collectionViewCellContentView>
+                                <size key="customSize" width="150" height="150"/>
+                                <connections>
+                                    <outlet property="date" destination="1GK-DN-ple" id="bwC-w3-wSr"/>
+                                    <outlet property="weatherIcon" destination="FWz-xy-BTb" id="UdC-8b-LC3"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="YMf-CA-R6J" id="f3K-4w-p7j"/>
+                            <outlet property="delegate" destination="YMf-CA-R6J" id="Sna-ra-aeh"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Forecast" id="XaA-JE-o1l"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sui-QD-oyH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1515.9420289855075" y="703.79464285714278"/>
         </scene>
         <!--Weather Preview View Controller-->
         <scene sceneID="Dn5-dI-Ez4">
@@ -467,7 +535,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ixf-tV-e3Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1516" y="715"/>
+            <point key="canvasLocation" x="1516" y="1418"/>
         </scene>
         <!--Map-->
         <scene sceneID="EEa-Lw-iq4">
@@ -487,6 +555,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wJ7-46-dCO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="748" y="0.0"/>
+        </scene>
+        <!--Forecast-->
+        <scene sceneID="eKC-0T-pn6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xEc-Sj-8Uz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Forecast" id="11k-li-5Vx"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fHV-Oj-B1J">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="YMf-CA-R6J" kind="relationship" relationship="rootViewController" id="NOc-xr-J3G"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NzD-IZ-jtG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="748" y="705"/>
         </scene>
     </scenes>
     <resources>

@@ -13,6 +13,7 @@
 		CA4E6E7B239AD173004A301F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E6E7A239AD173004A301F /* SettingsTableViewController.swift */; };
 		CA4E6E7D239AD19B004A301F /* NetworkCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E6E7C239AD19B004A301F /* NetworkCalls.swift */; };
 		CA4E6E7F239AD201004A301F /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E6E7E239AD201004A301F /* Structures.swift */; };
+		CA511068239D830100735A56 /* ForecastCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA511067239D830100735A56 /* ForecastCollectionViewController.swift */; };
 		CAABE11C239B9A4A00F9866F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAABE11B239B9A4A00F9866F /* MapViewController.swift */; };
 		CAAC50EC238E4DEE0072BE88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAC50EB238E4DEE0072BE88 /* AppDelegate.swift */; };
 		CAAC50EE238E4DEE0072BE88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAC50ED238E4DEE0072BE88 /* SceneDelegate.swift */; };
@@ -31,6 +32,7 @@
 		CA4E6E7A239AD173004A301F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		CA4E6E7C239AD19B004A301F /* NetworkCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCalls.swift; sourceTree = "<group>"; };
 		CA4E6E7E239AD201004A301F /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
+		CA511067239D830100735A56 /* ForecastCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCollectionViewController.swift; sourceTree = "<group>"; };
 		CAABE11B239B9A4A00F9866F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CAAC50E8238E4DEE0072BE88 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAAC50EB238E4DEE0072BE88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,31 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		CA0BFFF4239D823400301E06 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CA4E6E78239AD150004A301F /* HomeTableViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		CA0BFFF5239D823900301E06 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				CAABE11B239B9A4A00F9866F /* MapViewController.swift */,
+				CA0BFFF2239CCC1F00301E06 /* WeatherPreviewViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		CA0BFFF6239D823E00301E06 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CA4E6E7A239AD173004A301F /* SettingsTableViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		CA4E6E80239AD209004A301F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +105,14 @@
 				CA4E6E7E239AD201004A301F /* Structures.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		CA511066239D82E300735A56 /* Forecast */ = {
+			isa = PBXGroup;
+			children = (
+				CA511067239D830100735A56 /* ForecastCollectionViewController.swift */,
+			);
+			path = Forecast;
 			sourceTree = "<group>";
 		};
 		CAAC50DF238E4DEE0072BE88 = {
@@ -103,10 +138,10 @@
 			children = (
 				CAAC50EB238E4DEE0072BE88 /* AppDelegate.swift */,
 				CAAC50ED238E4DEE0072BE88 /* SceneDelegate.swift */,
-				CA4E6E78239AD150004A301F /* HomeTableViewController.swift */,
-				CAABE11B239B9A4A00F9866F /* MapViewController.swift */,
-				CA0BFFF2239CCC1F00301E06 /* WeatherPreviewViewController.swift */,
-				CA4E6E7A239AD173004A301F /* SettingsTableViewController.swift */,
+				CA0BFFF4239D823400301E06 /* Home */,
+				CA0BFFF5239D823900301E06 /* Map */,
+				CA511066239D82E300735A56 /* Forecast */,
+				CA0BFFF6239D823E00301E06 /* Settings */,
 				CA4E6E80239AD209004A301F /* Utilities */,
 				CAAC50F3238E4DEE0072BE88 /* Main.storyboard */,
 				CAAC50F8238E4DF00072BE88 /* LaunchScreen.storyboard */,
@@ -255,6 +290,7 @@
 				CA37C500239B723000189CC1 /* Weather.xcdatamodeld in Sources */,
 				CA4E6E79239AD150004A301F /* HomeTableViewController.swift in Sources */,
 				CAAC50EC238E4DEE0072BE88 /* AppDelegate.swift in Sources */,
+				CA511068239D830100735A56 /* ForecastCollectionViewController.swift in Sources */,
 				CAAC50EE238E4DEE0072BE88 /* SceneDelegate.swift in Sources */,
 				CA0BFFF3239CCC1F00301E06 /* WeatherPreviewViewController.swift in Sources */,
 				CA4E6E7D239AD19B004A301F /* NetworkCalls.swift in Sources */,
