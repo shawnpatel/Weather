@@ -20,7 +20,7 @@ class NetworkCalls {
         
         AF.request(weatherURL).response { response in
             if let error = response.error {
-                completion(.failure(NSError(domain: error.errorDescription!, code: 0)))
+                completion(.failure(NSError(domain: "com.shawnpatel.Weather", code: 0, userInfo: [NSLocalizedDescriptionKey: error.errorDescription!])))
                 return
             }
             
@@ -46,7 +46,7 @@ class NetworkCalls {
             self.getWeatherImage(icon: icon) { response in
                 switch response {
                 case .failure(let error):
-                    completion(.failure(NSError(domain: error.localizedDescription, code: 0)))
+                    completion(.failure(NSError(domain: "com.shawnpatel.Weather", code: 0, userInfo: [NSLocalizedDescriptionKey: error.localizedDescription])))
                 case .success(let weatherIcon):
                     currentWeatherData.icon = weatherIcon
                     completion(.success(currentWeatherData))
@@ -63,7 +63,7 @@ class NetworkCalls {
         
         AF.request(weatherURL).response { response in
             if let error = response.error {
-                completion(.failure(NSError(domain: error.errorDescription!, code: 0)))
+                completion(.failure(NSError(domain: "com.shawnpatel.Weather", code: 0, userInfo: [NSLocalizedDescriptionKey: error.errorDescription!])))
                 return
             }
             
@@ -98,7 +98,7 @@ class NetworkCalls {
                 self.getWeatherImage(icon: icon) { response in
                     switch response {
                     case .failure(let error):
-                        completion(.failure(NSError(domain: error.localizedDescription, code: 0)))
+                        completion(.failure(NSError(domain: "com.shawnpatel.Weather", code: 0, userInfo: [NSLocalizedDescriptionKey: error.localizedDescription])))
                     case .success(let weatherIcon):
                         dailyWeatherData.icon = weatherIcon
                         forecastWeatherData.append(dailyWeatherData)
@@ -117,7 +117,7 @@ class NetworkCalls {
         
         AF.request(weatherIconURL).response { response in
             if let error = response.error {
-                completion(.failure(NSError(domain: error.errorDescription!, code: 0)))
+                completion(.failure(NSError(domain: "com.shawnpatel.Weather", code: 0, userInfo: [NSLocalizedDescriptionKey: error.errorDescription!])))
                 return
             }
             
