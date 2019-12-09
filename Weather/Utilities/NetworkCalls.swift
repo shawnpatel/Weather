@@ -12,8 +12,8 @@ import Alamofire
 import SwiftyJSON
 
 class NetworkCalls {
-    func getWeather(lat: Double, long: Double, units: String, completion: @escaping (Result<WeatherData, NSError>) -> Void) {
-        var weatherData = WeatherData()
+    func getCurrentWeather(lat: Double, long: Double, units: String, completion: @escaping (Result<CurrentWeatherData, NSError>) -> Void) {
+        var currentWeatherData = CurrentWeatherData()
         
         let weatherAPIKey = "2152f0ae29eeeb61115e5d7740e1229d"
         let weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=\(weatherAPIKey)&lat=\(lat)&lon=\(long)&units=\(units)"
@@ -26,30 +26,87 @@ class NetworkCalls {
             
             let data = JSON(response.data!)
             
-            weatherData.city = data["name"].stringValue
-            weatherData.country = data["sys"]["country"].stringValue
+            currentWeatherData.city = data["name"].stringValue
+            currentWeatherData.country = data["sys"]["country"].stringValue
             
-            weatherData.temp = data["main"]["temp"].doubleValue
-            weatherData.minTemp = data["main"]["temp_min"].doubleValue
-            weatherData.maxTemp = data["main"]["temp_max"].doubleValue
+            currentWeatherData.temp = data["main"]["temp"].doubleValue
+            currentWeatherData.minTemp = data["main"]["temp_min"].doubleValue
+            currentWeatherData.maxTemp = data["main"]["temp_max"].doubleValue
             
-            weatherData.conditions = data["weather"][0]["description"].stringValue.localizedCapitalized
+            currentWeatherData.conditions = data["weather"][0]["description"].stringValue.localizedCapitalized
             
-            weatherData.pressure = data["main"]["pressure"].doubleValue
-            weatherData.humidity = data["main"]["humidity"].intValue
-            weatherData.windSpeed = data["wind"]["speed"].doubleValue
+            currentWeatherData.pressure = data["main"]["pressure"].doubleValue
+            currentWeatherData.humidity = data["main"]["humidity"].intValue
+            currentWeatherData.windSpeed = data["wind"]["speed"].doubleValue
             
-            weatherData.sunrise = data["sys"]["sunrise"].doubleValue
-            weatherData.sunset = data["sys"]["sunset"].doubleValue
+            currentWeatherData.sunrise = data["sys"]["sunrise"].doubleValue
+            currentWeatherData.sunset = data["sys"]["sunset"].doubleValue
             
             let icon = data["weather"][0]["icon"].stringValue
-            self.getWeatherImage(icon: icon) {response in
+            self.getWeatherImage(icon: icon) { response in
                 switch response {
                 case .failure(let error):
                     completion(.failure(NSError(domain: error.localizedDescription, code: 0)))
                 case .success(let weatherIcon):
-                    weatherData.icon = weatherIcon
-                    completion(.success(weatherData))
+                    currentWeatherData.icon = weatherIcon
+                    completion(.success(currentWeatherData))
+                }
+            }
+        }
+    }
+    
+    func getWeatherForecast(lat: Double, long: Double, units: String, completion: @escaping (Result<[ForecastWeatherData], NSError>) -> Void) {
+        var forecastWeatherData: [ForecastWeatherData] = []
+        
+        let weatherAPIKey = "2152f0ae29eeeb61115e5d7740e1229d"
+        let weatherURL = "https://api.openweathermap.org/data/2.5/forecast/daily?appid=\(weatherAPIKey)&lat=\(lat)&lon=\(long)&units=\(units)&cnt=16"
+        
+        AF.request(weatherURL).response { response in
+            if let error = response.error {
+                completion(.failure(NSError(domain: error.errorDescription!, code: 0)))
+                return
+            }
+            
+            let data = JSON(response.data!)
+            
+            let city = data["city"]["name"].stringValue
+            let country = data["country"].stringValue
+            
+            for conditions in data["list"].arrayValue {
+                var dailyWeatherData = ForecastWeatherData()
+                
+                dailyWeatherData.time = conditions["dt"].doubleValue
+                
+                dailyWeatherData.city = city
+                dailyWeatherData.country = country
+                
+                dailyWeatherData.dayTemp = conditions["temp"]["day"].doubleValue
+                dailyWeatherData.nightTemp = conditions["temp"]["night"].doubleValue
+                dailyWeatherData.minTemp = conditions["temp"]["min"].doubleValue
+                dailyWeatherData.maxTemp = conditions["temp"]["max"].doubleValue
+                
+                dailyWeatherData.conditions = conditions["weather"][0]["description"].stringValue.localizedCapitalized
+                
+                dailyWeatherData.pressure = conditions["pressure"].doubleValue
+                dailyWeatherData.humidity = conditions["humidity"].intValue
+                dailyWeatherData.windSpeed = conditions["speed"].doubleValue
+                
+                dailyWeatherData.sunrise = conditions["sunrise"].doubleValue
+                dailyWeatherData.sunset = conditions["sunset"].doubleValue
+                
+                let icon = conditions["weather"][0]["icon"].stringValue
+                self.getWeatherImage(icon: icon) { response in
+                    switch response {
+                    case .failure(let error):
+                        completion(.failure(NSError(domain: error.localizedDescription, code: 0)))
+                    case .success(let weatherIcon):
+                        dailyWeatherData.icon = weatherIcon
+                        forecastWeatherData.append(dailyWeatherData)
+                        
+                        if forecastWeatherData.count == 16 {
+                            completion(.success(forecastWeatherData))
+                        }
+                    }
                 }
             }
         }

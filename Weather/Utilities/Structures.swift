@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct WeatherData {
+struct CurrentWeatherData {
     var city: String?
     var country: String?
     
@@ -51,4 +51,26 @@ struct WeatherData {
             return nil
         }
     }
+}
+
+struct ForecastWeatherData {
+    var time: Double? // [s] - Unix Time
+    
+    var city: String?
+    var country: String?
+    
+    var dayTemp: Double? // [°C]
+    var nightTemp: Double? // [°C]
+    var minTemp: Double? // [°C]
+    var maxTemp: Double? // [°C]
+    
+    var conditions: String?
+    var icon: UIImage?
+    
+    var pressure: Double? // [hPa]
+    var humidity: Int? // [%]
+    var windSpeed: Double? // [m/s]
+    
+    var sunrise: Double? // [s] - Unix Time
+    var sunset: Double? // [s] - Unix Time
 }

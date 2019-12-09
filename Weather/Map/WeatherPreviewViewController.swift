@@ -18,13 +18,16 @@ class WeatherPreviewViewController: UIViewController {
     var lat: Double!
     var long: Double!
     
-    var weatherData: WeatherData!
-    var settings: [String: Any] = ["units": 0]
+    var currentWeatherData: CurrentWeatherData!
+    var settings: [String: Any]!
     
-    var unitSymbols: [String: [String]] = ["temp": ["°F", "°C"], "speed": ["mph", "m/s"]]
+    var unitSymbols: [String: [String]]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        settings = ["units": 0]
+        unitSymbols = ["temp": ["°F", "°C"], "speed": ["mph", "m/s"]]
         
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
@@ -70,10 +73,10 @@ class WeatherPreviewViewController: UIViewController {
             units = "metric"
         }
         
-        NetworkCalls().getWeather(lat: lat, long: long, units: units) {response in
+        NetworkCalls().getCurrentWeather(lat: lat, long: long, units: units) {response in
             switch response {
-            case .success(let weatherData):
-                self.weatherData = weatherData
+            case .success(let currentWeatherData):
+                self.currentWeatherData = currentWeatherData
                 self.updateUI()
             case .failure(let error):
                 print(error.localizedDescription)
@@ -85,8 +88,8 @@ class WeatherPreviewViewController: UIViewController {
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
             
-            self.weatherIcon.image = self.weatherData.icon
-            self.temp.text = "\(self.weatherData.temp!) \(self.unitSymbols["temp"]![self.settings["units"] as! Int])"
+            self.weatherIcon.image = self.currentWeatherData.icon
+            self.temp.text = "\(self.currentWeatherData.temp!) \(self.unitSymbols["temp"]![self.settings["units"] as! Int])"
         }
     }
 }

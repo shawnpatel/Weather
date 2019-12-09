@@ -15,10 +15,10 @@ class HomeTableViewController: UITableViewController {
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation!
     
-    var weatherData: WeatherData!
-    var settings: [String: Any] = ["units": 0]
+    var currentWeatherData: CurrentWeatherData!
+    var settings: [String: Any]!
     
-    var unitSymbols: [String: [String]] = ["temp": ["°F", "°C"], "speed": ["mph", "m/s"]]
+    var unitSymbols: [String: [String]]!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -30,6 +30,9 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        settings = ["units": 0]
+        unitSymbols = ["temp": ["°F", "°C"], "speed": ["mph", "m/s"]]
+        
         locationManager.delegate = self
         
         tableView.isHidden = true
@@ -37,6 +40,21 @@ class HomeTableViewController: UITableViewController {
         loadSettings()
         loadSavedWeather()
         getSavedWeather()
+    }
+    
+    func loadSettings() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Settings")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                settings["units"] = data.value(forKey: "units") as! Int
+            }
+        } catch {
+            print("Fetching from Core Data failed.")
+        }
     }
     
     func loadSavedWeather() {
@@ -51,39 +69,24 @@ class HomeTableViewController: UITableViewController {
                     return
                 }
                 
-                weatherData = WeatherData()
+                currentWeatherData = CurrentWeatherData()
                 
-                weatherData.city = city
-                weatherData.country = (data.value(forKey: "country") as! String)
+                currentWeatherData.city = city
+                currentWeatherData.country = (data.value(forKey: "country") as! String)
                 
-                weatherData.temp = (data.value(forKey: "temp") as! Double)
-                weatherData.minTemp = (data.value(forKey: "minTemp") as! Double)
-                weatherData.maxTemp = (data.value(forKey: "maxTemp") as! Double)
+                currentWeatherData.temp = (data.value(forKey: "temp") as! Double)
+                currentWeatherData.minTemp = (data.value(forKey: "minTemp") as! Double)
+                currentWeatherData.maxTemp = (data.value(forKey: "maxTemp") as! Double)
                 
-                weatherData.conditions = (data.value(forKey: "conditions") as! String)
-                weatherData.icon = UIImage(data: data.value(forKey: "icon") as! Data)
+                currentWeatherData.conditions = (data.value(forKey: "conditions") as! String)
+                currentWeatherData.icon = UIImage(data: data.value(forKey: "icon") as! Data)
                 
-                weatherData.pressure = (data.value(forKey: "pressure") as! Double)
-                weatherData.humidity = (data.value(forKey: "humidity") as! Int)
-                weatherData.windSpeed = data.value(forKey: "windSpeed") as? Double
+                currentWeatherData.pressure = (data.value(forKey: "pressure") as! Double)
+                currentWeatherData.humidity = (data.value(forKey: "humidity") as! Int)
+                currentWeatherData.windSpeed = data.value(forKey: "windSpeed") as? Double
                 
-                weatherData.sunrise = (data.value(forKey: "sunrise") as! Double)
-                weatherData.sunset = (data.value(forKey: "sunset") as! Double)
-            }
-        } catch {
-            print("Fetching from Core Data failed.")
-        }
-    }
-    
-    func loadSettings() {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Settings")
-        request.returnsObjectsAsFaults = false
-        
-        do {
-            let result = try context.fetch(request)
-            for data in result as! [NSManagedObject] {
-                settings["units"] = data.value(forKey: "units") as! Int
+                currentWeatherData.sunrise = (data.value(forKey: "sunrise") as! Double)
+                currentWeatherData.sunset = (data.value(forKey: "sunset") as! Double)
             }
         } catch {
             print("Fetching from Core Data failed.")
@@ -148,10 +151,10 @@ class HomeTableViewController: UITableViewController {
             units = "metric"
         }
         
-        NetworkCalls().getWeather(lat: lat, long: long, units: units) {response in
+        NetworkCalls().getCurrentWeather(lat: lat, long: long, units: units) {response in
             switch response {
-            case .success(let weatherData):
-                self.weatherData = weatherData
+            case .success(let currentWeatherData):
+                self.currentWeatherData = currentWeatherData
                 self.tableView.reloadData()
                 
                 self.tableView.isHidden = false
@@ -168,7 +171,7 @@ class HomeTableViewController: UITableViewController {
         let entity = NSEntityDescription.entity(forEntityName: "Weather", in: context)
         let weather = NSManagedObject(entity: entity!, insertInto: context)
         
-        weather.setValuesForKeys(weatherData.dictionary!)
+        weather.setValuesForKeys(currentWeatherData.dictionary!)
         
         do {
             try context.save()
@@ -225,36 +228,36 @@ class HomeTableViewController: UITableViewController {
         if indexPath.row == 0 { // Conditions Cell
             let cell = tableView.dequeueReusableCell(withIdentifier: "conditions", for: indexPath) as! ConditionsTableViewCell
             
-            if weatherData != nil {
-                cell.weatherIcon.image = weatherData.icon
-                cell.weatherDescription.text = weatherData.conditions
+            if currentWeatherData != nil {
+                cell.weatherIcon.image = currentWeatherData.icon
+                cell.weatherDescription.text = currentWeatherData.conditions
                 
-                cell.location.text = "\(weatherData.city!), \(weatherData.country!)"
-                cell.temp.text = "\(weatherData.temp!) \(unitSymbols["temp"]![settings["units"] as! Int])"
-                cell.lowTemp.text = "L: \(weatherData.minTemp!) \(unitSymbols["temp"]![settings["units"] as! Int])"
-                cell.highTemp.text = "H: \(weatherData.maxTemp!) \(unitSymbols["temp"]![settings["units"] as! Int])"
+                cell.location.text = "\(currentWeatherData.city!), \(currentWeatherData.country!)"
+                cell.temp.text = "\(currentWeatherData.temp!) \(unitSymbols["temp"]![settings["units"] as! Int])"
+                cell.lowTemp.text = "L: \(currentWeatherData.minTemp!) \(unitSymbols["temp"]![settings["units"] as! Int])"
+                cell.highTemp.text = "H: \(currentWeatherData.maxTemp!) \(unitSymbols["temp"]![settings["units"] as! Int])"
             }
             
             return cell
         } else if indexPath.row == 1 { // Supplement Conditions Cell
             let cell = tableView.dequeueReusableCell(withIdentifier: "supplementConditions", for: indexPath) as! SupplementConditionsTableViewCell
             
-            if weatherData != nil {
-                cell.pressure.text = "\(weatherData.pressure!) hPa"
-                cell.humidity.text = "\(weatherData.humidity!) %"
-                cell.wind.text = "\(weatherData.windSpeed!) \(unitSymbols["speed"]![settings["units"] as! Int])"
+            if currentWeatherData != nil {
+                cell.pressure.text = "\(currentWeatherData.pressure!) hPa"
+                cell.humidity.text = "\(currentWeatherData.humidity!) %"
+                cell.wind.text = "\(currentWeatherData.windSpeed!) \(unitSymbols["speed"]![settings["units"] as! Int])"
             }
             
             return cell
         } else if indexPath.row == 2 { // Sun Cell
             let cell = tableView.dequeueReusableCell(withIdentifier: "sun", for: indexPath) as! SunTableViewCell
             
-            if weatherData != nil {
+            if currentWeatherData != nil {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "h:mm a"
                 
-                let sunrise = Date(timeIntervalSince1970: weatherData.sunrise!)
-                let sunset = Date(timeIntervalSince1970: weatherData.sunset!)
+                let sunrise = Date(timeIntervalSince1970: currentWeatherData.sunrise!)
+                let sunset = Date(timeIntervalSince1970: currentWeatherData.sunset!)
                 
                 cell.sunrise.text = "\(dateFormatter.string(from: sunrise))"
                 cell.sunset.text = "\(dateFormatter.string(from: sunset))"
