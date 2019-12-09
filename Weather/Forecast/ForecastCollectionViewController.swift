@@ -102,7 +102,10 @@ class ForecastCollectionViewController: UICollectionViewController, UICollection
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "dailyForecast" {
+            let dailyForecast: DailyForecastTableViewController = segue.destination as! DailyForecastTableViewController
+            dailyForecast.forecastWeatherData = forecastWeatherData[sender as! Int]
+        }
     }
 
     // MARK: UICollectionViewDataSource
@@ -142,6 +145,10 @@ class ForecastCollectionViewController: UICollectionViewController, UICollection
         cell.date.text = "\(dateFormatter.string(from: date))"
         
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "dailyForecast", sender: indexPath.row)
     }
 }
 

@@ -70,7 +70,7 @@ class NetworkCalls {
             let data = JSON(response.data!)
             
             let city = data["city"]["name"].stringValue
-            let country = data["country"].stringValue
+            let country = data["city"]["country"].stringValue
             
             for conditions in data["list"].arrayValue {
                 var dailyWeatherData = ForecastWeatherData()
