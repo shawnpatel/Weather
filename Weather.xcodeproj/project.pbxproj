@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA04531D23CD8A4200CE3A73 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA04531C23CD8A4200CE3A73 /* APIKeys.swift */; };
 		CA083E8C239E185E001F393C /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA083E8B239E185E001F393C /* WeatherTests.swift */; };
 		CA0BFFF3239CCC1F00301E06 /* WeatherPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0BFFF2239CCC1F00301E06 /* WeatherPreviewViewController.swift */; };
 		CA37C500239B723000189CC1 /* Weather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA37C4FE239B723000189CC1 /* Weather.xcdatamodeld */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		2FC2254F89A6CA51317E763A /* Pods-Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.debug.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.debug.xcconfig"; sourceTree = "<group>"; };
 		C63807712C5E085DEDA28AFB /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
+		CA04531C23CD8A4200CE3A73 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		CA083E89239E185E001F393C /* WeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA083E8B239E185E001F393C /* WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
 		CA083E8D239E185E001F393C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			children = (
 				CA4E6E7C239AD19B004A301F /* NetworkCalls.swift */,
 				CA4E6E7E239AD201004A301F /* Structures.swift */,
+				CA04531C23CD8A4200CE3A73 /* APIKeys.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				CAAC50EC238E4DEE0072BE88 /* AppDelegate.swift in Sources */,
 				CA511068239D830100735A56 /* ForecastCollectionViewController.swift in Sources */,
 				CAAC50EE238E4DEE0072BE88 /* SceneDelegate.swift in Sources */,
+				CA04531D23CD8A4200CE3A73 /* APIKeys.swift in Sources */,
 				CA0BFFF3239CCC1F00301E06 /* WeatherPreviewViewController.swift in Sources */,
 				CA4E6E7D239AD19B004A301F /* NetworkCalls.swift in Sources */,
 				CAABE11C239B9A4A00F9866F /* MapViewController.swift in Sources */,

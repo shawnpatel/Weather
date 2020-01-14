@@ -15,7 +15,7 @@ class NetworkCalls {
     func getCurrentWeather(lat: Double, long: Double, units: String, completion: @escaping (Result<CurrentWeatherData, NSError>) -> Void) {
         var currentWeatherData = CurrentWeatherData()
         
-        let weatherAPIKey = "2152f0ae29eeeb61115e5d7740e1229d"
+        let weatherAPIKey = APIKeys().OpenWeatherMap
         let weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=\(weatherAPIKey)&lat=\(lat)&lon=\(long)&units=\(units)"
         
         AF.request(weatherURL).response { response in
@@ -58,7 +58,7 @@ class NetworkCalls {
     func getWeatherForecast(lat: Double, long: Double, units: String, completion: @escaping (Result<[ForecastWeatherData], NSError>) -> Void) {
         var forecastWeatherData: [ForecastWeatherData] = []
         
-        let weatherAPIKey = "2152f0ae29eeeb61115e5d7740e1229d"
+        let weatherAPIKey = APIKeys().OpenWeatherMap
         let weatherURL = "https://api.openweathermap.org/data/2.5/forecast/daily?appid=\(weatherAPIKey)&lat=\(lat)&lon=\(long)&units=\(units)&cnt=16"
         
         AF.request(weatherURL).response { response in
